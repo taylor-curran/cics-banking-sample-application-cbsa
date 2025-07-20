@@ -182,4 +182,28 @@ public class JdbcAccountRepository implements AccountRepository {
             return Optional.empty();
         }
     }
+
+    @Override
+    public Optional<Account> findByAccountNumber(String accountNumber) {
+        try {
+            Account account = jdbcTemplate.queryForObject(
+                "SELECT * FROM account WHERE account_number = ?",
+                rowMapper,
+                accountNumber
+            );
+            return Optional.ofNullable(account);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public Optional<Account> findBySortCodeAndAccountNumber(String sortCode, String accountNumber) {
+        return findById(sortCode, accountNumber);
+    }
+
+    @Override
+    public Account updateAccount(Account account) {
+        return save(account);
+    }
 }
