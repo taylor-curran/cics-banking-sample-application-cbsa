@@ -74,4 +74,29 @@ public interface AccountRepository {
      * @return highest-numbered account if present
      */
     Optional<Account> findTopBySortCodeOrderByAccountNumberDesc(String sortCode);
+
+    /**
+     * Find an account by account number only
+     * 
+     * @param accountNumber the account number
+     * @return the account if found
+     */
+    Optional<Account> findByAccountNumber(String accountNumber);
+
+    /**
+     * Find an account by sort code and account number
+     * 
+     * @param sortCode the sort code
+     * @param accountNumber the account number
+     * @return the account if found
+     */
+    Optional<Account> findBySortCodeAndAccountNumber(String sortCode, String accountNumber);
+
+    /**
+     * Update an existing account
+     * 
+     * @param account the account to update
+     * @return the updated account
+     */
+    Account updateAccount(Account account);
 }
