@@ -7,21 +7,21 @@ description: Steps used to migrate BNK1CAC COBOL program to Java Spring Boot
 > BNK1CAC is a CICS BMS screen program that validates user-entered account data and, on success, links to COBOL program **CREACC** to create the account record. The Java migration must replicate this behaviour inside the existing Spring Boot architecture while discarding the green-screen UI.
 
 ## 1. Discovery & Classification
-1. Locate and study `BNK1CAC.cbl`, copybook `BNK1CAM`, and invoked program `CREACC`.
-2. Classify as **Screen/BMS Program ➜ REST Controller + DTOs** (see migration decision criteria).
+1. Located and studied `BNK1CAC.cbl`, copybook `BNK1CAM`, and invoked program `CREACC`.
+2. Classified as **Screen/BMS Program ➜ REST Controller + DTOs** (see migration decision criteria).
 
 ## 2. Data & Validation Mapping
-1. List all input fields displayed on BNK1 screen (customer number, account type, interest rate, overdraft limit, etc.).
-2. Derive validation rules encoded in COBOL (value ranges, mandatory fields).
-3. Map screen fields ➜ `AccountCreationRequestDto` properties.
-4. Define `AccountCreationResponseDto` (success flag, new account key, failure reason).
+1. Listed all input fields displayed on BNK1 screen (customer number, account type, interest rate, overdraft limit, etc.).
+2. Derived validation rules encoded in COBOL (value ranges, mandatory fields).
+3. Mapped screen fields ➜ `AccountCreationRequestDto` properties.
+4. Defined `AccountCreationResponseDto` (success flag, new account key, failure reason).
 
 ## 3. Java Artifact Scaffold
-1. Run workflow `/one-migration-scaffold` (module = **BNK1CAC**) to generate:
+1. Ran workflow `/one-migration-scaffold` (module = **BNK1CAC**) to generate:
    - `AccountCreationController`
    - `AccountCreationRequestDto` / `AccountCreationResponseDto`
    - Service interface `AccountCreationService` + impl stub.
-2. Place classes under `com.cbsa.migration.*` respecting package structure.
+2. Placed classes under `com.cbsa.migration.*` respecting package structure.
 
 ## 4. Service Implementation
 1. Implement `AccountCreationService#createAccount()` that:
