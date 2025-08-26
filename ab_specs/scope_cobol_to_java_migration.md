@@ -39,13 +39,6 @@ This document outlines the scope and approach for migrating the CICS Banking Sam
 - Connect these UI components to new Java backend via REST APIs
 - No UI redesign - focus exclusively on backend migration
 
-### Data Architecture
-
-- **Database**: SQLite file-based database
-- **Access Method**: Plain JDBC (no ORM)
-- **Data Migration**: VSAM and DB2 data will be unloaded into SQLite relational tables
-- **Rationale**: Simple, lightweight solution appropriate for teller-style workload volumes
-
 ### Runtime & Deployment
 
 - **Runtime**: Java 11 Spring Boot application
@@ -53,6 +46,13 @@ This document outlines the scope and approach for migrating the CICS Banking Sam
 - **Hosting**: Cloud VM (AWS/Azure/GCP)
 - **Infrastructure**: Standard Linux + Java stack
 - **Dependencies**: No IBM-specific dependencies or mainframe connectivity required
+
+#### Data Architecture
+
+- **Database**: SQLite file-based database
+- **Access Method**: Plain JDBC (no ORM)
+- **Data Migration**: VSAM and DB2 data will be unloaded into SQLite relational tables
+- **Rationale**: Simple, lightweight solution appropriate for teller-style workload volumes
 
 ### Integration Strategy
 
